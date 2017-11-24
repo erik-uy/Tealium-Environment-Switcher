@@ -34,6 +34,9 @@
   padding: 0;
   margin: 0; }
 
+.ccc-item {
+  height: 33px; }
+
 .ccc-item:hover {
   background-color: #f4f4f4; }
 
@@ -72,7 +75,9 @@
 
 .ccc-contents button {
   width: 100%;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  height: 15px;
+  font-size: 12px; }
 
 .pull-right {
   float: right !important; }

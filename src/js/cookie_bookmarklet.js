@@ -7,7 +7,7 @@
     var _cookies = [], _defEnvs=['dev','qa','prod'], _custEnvs=[];
     var _profile, _account, _envName, _active;
     var _templates = {
-        list: '<form name="switcher">' +
+        list: '' +
         '<div class="ccc-popup">' +
         '<div class="ccc-title">Tealium Environment Switcher</div>' +
         '<div class="ccc-account">Account: ' +
@@ -27,7 +27,7 @@
         '<input type="text" class="ccc-new-environment" value="" name="newEnvironment" id="newEnvironment" {{active}}>' +
         '<button class="ccc-button ccc-add pull-right">Add</button>'+
         '</div>'+
-        '</div></div></form>',
+        '</div></div>',
 
         item: '' +
         '<li class="ccc-item">' +
@@ -102,7 +102,9 @@
     }
 
     function getActive() {
-        return _active=getCookies(new RegExp(getEnvPathName()));
+        var activeEnv = getCookies(new RegExp(getEnvPathName()));
+
+        return _active=(activeEnv.length>0?activeEnv:[{}])[0].value||'prod';
     }
 
     function create() {
@@ -157,7 +159,7 @@
                         profile:_profile,
                         env:name,
                         name:_pathName,
-                        active:'//tags.tiqcdn.com/utag/'+_account+'/'+_profile+'/'+name+'/utag.js'===_active[0].value?'checked':''
+                        active:'//tags.tiqcdn.com/utag/'+_account+'/'+_profile+'/'+name+'/utag.js'===_active?'checked':''
                     }
                 );
             // console.log(m);
@@ -177,7 +179,7 @@
                         profile:_profile,
                         env:name,
                         name:_pathName,
-                        active:'//tags.tiqcdn.com/utag/'+_account+'/'+_profile+'/'+name+'/utag.js'===_active[0].value?'checked':''
+                        active:'//tags.tiqcdn.com/utag/'+_account+'/'+_profile+'/'+name+'/utag.js'===_active?'checked':''
                     }
                 );
             // console.log(m);
@@ -195,7 +197,9 @@
     }
 
     function getCustomEnvironments(){
-        return JSON.parse(decodeURIComponent(getCookies(/ttes_custEnvs/)[0].value)||'[]');
+        var envs=getCookies(/ttes_custEnvs/);
+        envs=envs.length>0?envs:[{}];
+        return JSON.parse(decodeURIComponent(envs[0].value||'[]'));
     }
 
     function getEnvPathName(){
@@ -233,6 +237,8 @@
         if (button.classList.contains('ccc-update')) {
             // click on the Update button
             setCookie(input.name, input.value);
+            destroy();
+            create();
         } else if (button.classList.contains('ccc-delete')) {
             // click on the Delete button
             deleteCookie(input.name);
@@ -242,7 +248,7 @@
     function removeCustomEvent(event){
         // console.log(event.target);
         // var tb = document.querySelector('#newEnvironment');
-        _custEnvs.splice(_custEnvs.indexOf(event.target.getAttribute('data-key')));
+        _custEnvs.splice(_custEnvs.indexOf(event.target.getAttribute('data-key')),1);
         setCookie('ttes_custEnvs', encodeURI(JSON.stringify(_custEnvs)));
         destroy();
         create();
