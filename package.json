@@ -1,8 +1,8 @@
 {
-  "name": "cookie-bookmarklet",
+  "name": "Tealium-Environment-Switcher",
   "version": "1.0.0",
-  "description": "Cookie editor bookmarklet",
-  "author": "vasil.bachev@holidayextras.com",
+  "description": "Tealium environment switcher, forked from Cookie editor bookmarklet",
+  "author": "erik-uy",
   "license": "MIT",
   "main": "cookie_bookmarklet.js",
   "scripts": {
@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vbachevhx/cookie-bookmarklet.git"
+    "url": "git+https://github.com/erik-uy/Tealium-Environment-Switcher"
   },
   "bugs": {
-    "url": "https://github.com/vbachevhx/cookie-bookmarklet/issues"
+    "url": "https://github.com/erik-uy/Tealium-Environment-Switcher/issues"
   },
-  "homepage": "https://github.com/vbachevhx/cookie-bookmarklet#readme",
+  "homepage": "https://github.com/erik-uy/Tealium-Environment-Switcher#readme",
   "devDependencies": {
     "beefy": "^2.1.8",
     "browserify": "^14.1.0",

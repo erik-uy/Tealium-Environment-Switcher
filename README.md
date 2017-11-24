@@ -24,3 +24,4 @@ Known limitations:
 - :x: Delete all cookies
 - :x: Full unicode support
 - :x: Path/domain based deleting?
+
